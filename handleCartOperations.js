@@ -50,7 +50,7 @@ displayCartItems()
 
 const deleteItemFromCart=(id)=>{
     const cartItems=getItemsFromStorage()
-    const filteredItems=cartItems.filter((item)=>item._id==id)
+    const filteredItems=cartItems.filter((item)=>item._id !=id)
     localStorage.setItem('savedCart', JSON.stringify(filteredItems))
     displayCartItems()
 }
