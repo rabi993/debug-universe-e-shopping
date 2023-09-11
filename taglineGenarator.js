@@ -15,11 +15,11 @@ function generateTag(arr, interval) {
   setInterval(() => {
     const randomIndex = Math.floor(Math.random() * arr.length);
     const randomTagLine = tagLines[randomIndex];
-    document.getElementById("taglines").innerText = randomTagLine;
+    document.getElementById("tagline").innerText = randomTagLine;
   }, interval);
 }
 
-generateTag(tagLines, 2000);
+generateTag(tagLines, 3000);
 
 document
   .getElementById("random-room-btn")
@@ -29,7 +29,7 @@ document
     const result = await data.json();
     const randomIndex = Math.floor(Math.random() * 10);
     const modalBody = document.getElementById("random-room-info-modal-body");
-    const { name, summary, property_type, images, review_scores } = result[9];
+    const { name, summary, property_type, images, review_scores } = result[randomIndex];
     
     
 
@@ -37,7 +37,7 @@ document
     if (review_scores.scores) {
       reviews.setAttribute('class',"list-group")
 
-      object.keys(review_scores.scores).forEach((key) => {
+      Object.keys(review_scores.scores).forEach((key) => {
         reviews.innerHTML += `
         <li class="list-group-item list-group-item-info d-flex justify-content-between align-items-center">
         ${key} : 
@@ -61,7 +61,7 @@ document
         <p class="card-text">${summary}</p>
         <div id='review-score'>
       Review Scores :
-      ${review_scores.scores.review_scores_accuracy}
+      <div id= "reviews"></div>
     </div>
       </div>
       <button class="btn btn-info btn-lg"  role="button"
@@ -70,6 +70,8 @@ document
    </div>
     `;
     
+    document.getElementById("reviews").appendChild(reviews)
+
   });
 
 
